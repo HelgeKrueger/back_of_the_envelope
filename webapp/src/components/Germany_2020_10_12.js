@@ -5,6 +5,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Container } from "@mui/system";
+import BarChart from "./PercentageBarChart";
 
 const Predicition = () => {
   return (
@@ -22,6 +23,15 @@ const Predicition = () => {
           </Typography>
         </Container>
         <Typography variant="h5">Bremen</Typography>
+        <BarChart
+          data={[
+            { name: "FDP", percentage: 75, color: "yellow" },
+            { name: "Linke", percentage: 91, color: "purple" },
+            { name: "AFD", percentage: 75, color: "blue" },
+          ]}
+          title="Chance to be in parliament"
+        />
+        <br />
         <Typography variant="body">
           Stays at Red - Green: <b>98%</b> <br />
           FDP over 5%: <b>75%</b>
