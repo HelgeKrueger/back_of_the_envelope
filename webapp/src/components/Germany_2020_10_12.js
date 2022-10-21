@@ -26,8 +26,8 @@ const Predicition = () => {
         <BarChart
           data={[
             { name: "FDP", percentage: 75, color: "yellow" },
-            { name: "Linke", percentage: 91, color: "purple" },
-            { name: "AFD", percentage: 75, color: "blue" },
+            { name: "Linke", percentage: 91, color: "violet" },
+            { name: "AFD", percentage: 75, color: "lightblue" },
           ]}
           title="Chance to be in parliament"
         />

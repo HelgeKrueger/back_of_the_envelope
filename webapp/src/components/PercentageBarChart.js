@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 const BarChart = (props) => {
   const { data, title } = props;
   const width = 600;
-  const height = 300;
+  const height = 70 + data.length * 50;
   const margin = { top: 50, bottom: 20, right: 20, left: 20 };
   const svgElementRef = useRef(null);
 
@@ -46,6 +46,14 @@ const BarChart = (props) => {
         .attr("stroke", "black");
 
       plotArea.append("g").call(xAxis);
+
+      const colorScheme = d3.scaleOrdinal(d3.schemePastel1);
+
+      for (let idx in data) {
+        if (!data[idx].color) {
+          data[idx].color = colorScheme(idx);
+        }
+      }
 
       plotArea
         .append("g")
