@@ -6,10 +6,10 @@ const Sources = (props) => {
     window.location = url;
   };
   return (
-    <List>
+    <List dense>
       {list.map((entry) => {
         return (
-          <ListItem>
+          <ListItem key={entry.name}>
             <ListItemButton onClick={() => open(entry.url)}>
               <ListItemText primary={entry.title} />
             </ListItemButton>
