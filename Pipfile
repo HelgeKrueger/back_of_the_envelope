@@ -9,6 +9,8 @@ scipy = "*"
 jupyter = "*"
 seaborn = "*"
 lxml = "*"
+requests = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 

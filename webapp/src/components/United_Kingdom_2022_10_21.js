@@ -56,6 +56,15 @@ chances
             a proper model; just guesstimating probabilities
           </Typography>
         </Container>
+        <Typography variant="h5">Sunday morning [G3] + simple model</Typography>
+        <PercentageBarChart
+          data={[
+            { name: "Rishi Sunak", percentage: 93 },
+            { name: "Penny Mordaunt", percentage: 0 },
+            { name: "Boris Johnson", percentage: 7 },
+          ]}
+          title="Chance to be next prime minister"
+        />
         <Typography variant="h5">Saturday [G3] + simple model</Typography>
         <Container>
           <PercentageBarChart
