@@ -9,7 +9,7 @@ import BarChart from "./PercentageBarChart";
 
 const Predicition = () => {
   return (
-    <Accordion defaultExpanded>
+    <Accordion>
       <AccordionSummary>
         <Typography variant="h4">
           Elections in Germany (12. October 2020)

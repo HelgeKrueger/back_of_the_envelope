@@ -42,7 +42,7 @@ chances
 {'johnson': 101, 'sunak': 899, 'mordaunt': 0, 'other': 0}
 `;
   return (
-    <Accordion defaultExpanded>
+    <Accordion>
       <AccordionSummary>
         <Typography variant="h4">
           United Kingdom's Prime Minister aka Tory Leadership race (21. October
