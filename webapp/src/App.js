@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, createTheme, ThemeProvider, Typography } from "@mui/material";
 import "./App.css";
 
-import UK20201021 from "./components/United_Kingdom_2022_10_21";
 import NavigationMenu from "./components/NavigationMenu";
 import Welcome from "./pages/welcome";
 
