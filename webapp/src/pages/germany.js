@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Tab, Container } from "@mui/material";
 
 import * as d3 from "d3";
 
 import Germany20201012 from "../components/Germany_2020_10_12";
 import PercentageBarChart from "../components/PercentageBarChart";
-import { Container } from "@mui/system";
+
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 const colorMapping = {
   CDU: 8,
@@ -43,6 +44,45 @@ const State = (props) => {
     </Container>
   );
 };
+
+const States = (props) => {
+  const { data } = props;
+  const [tabChoice, setTabChoice] = useState();
+
+  useEffect(() => {
+    const keys = Object.keys(data);
+
+    if (keys.length === 0) {
+      return;
+    }
+
+    if (keys.indexOf(tabChoice) === -1) {
+      setTabChoice(keys[0]);
+    }
+  }, [data, setTabChoice, tabChoice]);
+
+  if (Object.keys(data).length === 0) {
+    return <></>;
+  }
+
+  return (
+    <TabContext value={tabChoice}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <TabList onChange={(e, v) => setTabChoice(v)}>
+          {Object.keys(data).map((name) => (
+            <Tab key={name} value={name} label={name} />
+          ))}
+        </TabList>
+      </Box>
+      {Object.keys(data).map((name) => (
+        <TabPanel value={name}>
+          <State name={name} data={data[name]} />
+        </TabPanel>
+      ))}
+    </TabContext>
+  );
+};
+
 const Germany = () => {
   const [data, setData] = useState({});
   const [state, setState] = useState(0);
@@ -63,9 +103,7 @@ const Germany = () => {
     <Box>
       <Typography variant="h3">Predictions for Germany</Typography>
 
-      {Object.keys(data).map((key) => (
-        <State name={key} data={data[key]} key={key} />
-      ))}
+      <States data={data} />
 
       <Germany20201012 />
     </Box>
