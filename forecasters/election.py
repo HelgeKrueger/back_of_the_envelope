@@ -1,13 +1,21 @@
 import random
 
-from .statistics import choose_from_weights
+from .statistics import choose_from_weights, beta_dist
 
 
 class ElectionForecaster:
-    def __init__(self, polling_data, samples=500):
+    def __init__(self, polling_data, samples=250):
         self.polling_data = polling_data
         self.samples = samples
         self.parties = list(polling_data.keys())
+
+        self.sigma_polling = 0.044
+        # 360 -> 0.048
+        # 120 -> 0.044
+        # 60 -> 0.04
+        # 30 -> 0.03
+        # 10 -> 0.025
+        # 0 -> 0.022
 
     def sample(self):
         return next(self.predict(1))
@@ -28,21 +36,14 @@ class ElectionForecaster:
             }
 
     def election_result(self):
-        poll_ranges = {}
-        ss = 0
-        for p in self.parties:
-            value = self.polling_data[p]
-            poll_ranges[p] = value + ss
-            ss += value
-
+        party_weights = {
+            p: beta_dist(self.polling_data[p] / 100.0, self.sigma_polling).rvs(1)[0]
+            for p in self.parties
+        }
         result = {p: 0 for p in self.parties}
-
         for _ in range(self.samples):
-            r = random.random() * 100
-            for p in self.parties:
-                if r < poll_ranges[p]:
-                    result[p] += 100.0 / self.samples
-                    break
+            p = choose_from_weights(party_weights)
+            result[p] += 100.0 / self.samples
 
         return result
 

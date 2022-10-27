@@ -1,4 +1,5 @@
 import random
+from scipy.stats import beta
 
 
 def choose_from_weights(weights_dict):
@@ -10,3 +11,10 @@ def choose_from_weights(weights_dict):
         y += weights_dict[k]
         if x < y:
             return k
+
+
+def beta_dist(mean, std):
+    a = mean * (mean**2 / std**2 * (1 / mean - 1) - 1)
+    b = a * (1 / mean - 1)
+
+    return beta(a, b)
