@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, createTheme, ThemeProvider, Typography } from "@mui/material";
+import { MathJaxContext } from "better-react-mathjax";
+
 import "./App.css";
 
 import NavigationMenu from "./components/NavigationMenu";
@@ -20,24 +22,30 @@ function App() {
     },
   };
 
-  let [page, setPage] = useState(<Welcome />);
+  let [page, setPage] = useState();
+
+  useEffect(() => {
+    setPage(<Welcome setPage={setPage} />);
+  }, [setPage]);
 
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Box sx={{ display: "flex" }}>
-          <Box sx={{ width: { sm: "300px" }, flexShrink: { sm: 0 } }}>
-            <NavigationMenu setPage={setPage} />
+      <MathJaxContext>
+        <ThemeProvider theme={theme}>
+          <Box sx={{ display: "flex" }}>
+            <Box sx={{ width: { sm: "300px" }, flexShrink: { sm: 0 } }}>
+              <NavigationMenu setPage={setPage} />
+            </Box>
+            <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+              <Typography variant="h3" sx={{ textAlign: "center" }}>
+                Back of The Envelope
+              </Typography>
+              {page}
+              {/* <UK20201021 /> */}
+            </Box>
           </Box>
-          <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
-            <Typography variant="h3" sx={{ textAlign: "center" }}>
-              Back of The Envelope
-            </Typography>
-            {page}
-            {/* <UK20201021 /> */}
-          </Box>
-        </Box>
-      </ThemeProvider>
+        </ThemeProvider>
+      </MathJaxContext>
     </div>
   );
 }
