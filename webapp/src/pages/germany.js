@@ -89,7 +89,7 @@ const Germany = () => {
 
   useEffect(() => {
     if (state === 0) {
-      fetch("/data/election_data_20221027.json")
+      fetch("/data/election_data_20221117.json")
         .then((result) => result.json())
         .then((result) => {
           console.log(result);
