@@ -44,24 +44,26 @@ def forecast_election(forecaster, sample_size=1000):
 
 def get_forecaster(region):
 
+    sigma_polling = 0.044
+
     if region == "Hessen":
         url = "https://www.wahlrecht.de/umfragen/landtage/hessen.htm"
     elif region == "Bayern":
         url = "https://www.wahlrecht.de/umfragen/landtage/bayern.htm"
     elif region == "Bremen":
         url = "https://www.wahlrecht.de/umfragen/landtage/bremen.htm"
+    elif region == "Berlin":
+        url = "https://www.wahlrecht.de/umfragen/landtage/berlin.htm"
+        sigma_polling = 0.04
     else:
         raise ("Unknown region")
 
     df = pd.read_html(url)[1]
 
-    if region == "Bayern":
-        row = df.iloc[1]
-    else:
-        row = df.iloc[0]
+    row = df.iloc[0]
 
     parties = ["CDU", "CSU", "SPD", "GRÜNE", "FDP", "LINKE", "FW", "AfD", "Sonstige"]
 
     polling_data = {p: int(row[p].split(" ")[0]) for p in parties if p in row}
 
-    return ElectionForecaster(polling_data)
+    return ElectionForecaster(polling_data, sigma_polling=sigma_polling)

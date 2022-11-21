@@ -4,12 +4,13 @@ from .statistics import choose_from_weights, beta_dist
 
 
 class ElectionForecaster:
-    def __init__(self, polling_data, samples=250):
+    def __init__(self, polling_data, samples=250, sigma_polling=0.044):
         self.polling_data = polling_data
         self.samples = samples
         self.parties = list(polling_data.keys())
 
-        self.sigma_polling = 0.044
+        # self.sigma_polling = 0.044
+        self.sigma_polling = sigma_polling
         # 360 -> 0.048
         # 120 -> 0.044
         # 60 -> 0.04
@@ -83,6 +84,9 @@ class ElectionForecaster:
 
             if coalition in [
                 "SPD GRÜNE",
+                "GRÜNE SPD",
+                "SPD GRÜNE LINKE",
+                "GRÜNE SPD LINKE",
                 "CDU GRÜNE",
                 "GRÜNE CDU",
                 "CDU FDP",
