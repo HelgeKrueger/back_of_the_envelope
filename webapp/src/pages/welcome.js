@@ -6,6 +6,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import TwitterOutages from "./TwitterOutages";
+import RepublicanPrimary from "./RepublicanPrimary";
 
 const Welcome = (props) => {
   const { setPage } = props;
@@ -14,6 +15,11 @@ const Welcome = (props) => {
       Back of the Envelope is my spot on the web to share predictions based on
       models. It's mainly for myself to think things through.
       <List>
+        <ListItem>
+          <ListItemButton onClick={() => setPage(<RepublicanPrimary />)}>
+            <ListItemText primary="Republican Primary" />
+          </ListItemButton>
+        </ListItem>
         <ListItem>
           <ListItemButton onClick={() => setPage(<TwitterOutages />)}>
             <ListItemText primary="Twitter Outages" />
