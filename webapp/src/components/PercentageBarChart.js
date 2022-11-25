@@ -118,12 +118,14 @@ const BarChart = (props) => {
   };
 
   return (
-    <D3Wrapper
-      data={{ data, title }}
-      width={width}
-      height={height}
-      renderer={renderer}
-    />
+    <div style={{ margin: "20px" }}>
+      <D3Wrapper
+        data={{ data, title }}
+        width={width}
+        height={height}
+        renderer={renderer}
+      />
+    </div>
   );
 };
 

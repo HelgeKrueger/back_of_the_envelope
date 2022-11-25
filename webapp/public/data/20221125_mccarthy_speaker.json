@@ -1,0 +1,91 @@
+{
+  "main": {
+    "probabilities": [
+      { "name": "yes", "percentage": 31.9 },
+      { "name": "no", "percentage": 68.1 }
+    ],
+    "name": "McCarthy becomes speaker"
+  },
+  "dependencies": [
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 20.0 },
+        { "name": "no", "percentage": 80.0 }
+      ],
+      "name": "Rep. Andy Biggs (Ariz.)",
+      "title": "Rep. Andy Biggs (Ariz.) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 20.0 },
+        { "name": "no", "percentage": 80.0 }
+      ],
+      "name": "Rep. Matt Gaetz (Fla.)\u00a0",
+      "title": "Rep. Matt Gaetz (Fla.)\u00a0 vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 20.0 },
+        { "name": "no", "percentage": 80.0 }
+      ],
+      "name": "Rep. Bob Good (Va.)",
+      "title": "Rep. Bob Good (Va.) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 20.0 },
+        { "name": "no", "percentage": 80.0 }
+      ],
+      "name": "Rep. Ralph Norman (S.C.)",
+      "title": "Rep. Ralph Norman (S.C.) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 20.0 },
+        { "name": "no", "percentage": 80.0 }
+      ],
+      "name": "Rep. Matt Rosendale (Mont.)\u00a0",
+      "title": "Rep. Matt Rosendale (Mont.)\u00a0 vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 80.0 },
+        { "name": "no", "percentage": 20.0 }
+      ],
+      "name": "Rep. Scott Perry (Pa.)",
+      "title": "Rep. Scott Perry (Pa.) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 80.0 },
+        { "name": "no", "percentage": 20.0 }
+      ],
+      "name": "Rep. Chip Roy (Texas)",
+      "title": "Rep. Chip Roy (Texas) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 80.0 },
+        { "name": "no", "percentage": 20.0 }
+      ],
+      "name": "Rep. Dan Bishop (N.C.)",
+      "title": "Rep. Dan Bishop (N.C.) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 80.0 },
+        { "name": "no", "percentage": 20.0 }
+      ],
+      "name": "Rep. Andrew Clyde (Ga.)",
+      "title": "Rep. Andrew Clyde (Ga.) vote for McCarthy as speaker"
+    },
+    {
+      "probabilities": [
+        { "name": "yes", "percentage": 80.0 },
+        { "name": "no", "percentage": 20.0 }
+      ],
+      "name": "Rep. Barry Moore (Ala.)",
+      "title": "Rep. Barry Moore (Ala.) vote for McCarthy as speaker"
+    }
+  ]
+}
