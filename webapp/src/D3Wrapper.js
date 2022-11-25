@@ -21,6 +21,7 @@ const D3Wrapper = (props) => {
 
   const svgElementRefModal = useCallback(
     (node) => {
+      node.innerHTML = "";
       const svg = d3.select(node);
       renderer(svg, data, width * 2, height * 2, d3);
     },

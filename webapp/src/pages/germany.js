@@ -38,7 +38,6 @@ const State = (props) => {
             colorFunction={colorByParty}
             key={name + title}
           />
-          <br />
         </React.Fragment>
       ))}
     </Container>

@@ -7,7 +7,7 @@ const BarChart = (props) => {
   const margin = { top: 50, bottom: 20, right: 20, left: 20 };
 
   const renderer = (svg, data, width, height, d3) => {
-    svg.selectAll("*").remove();
+    // svg.selectAll("*").remove();
 
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
