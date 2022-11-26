@@ -27,7 +27,7 @@ const Inside = () => {
         <NavigationMenu />
       </Box>
       <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <Typography variant="h3" sx={{ textAlign: "center" }}>
+        <Typography variant="h3" sx={{ textAlign: "center", marginBottom: 5 }}>
           Back of The Envelope
         </Typography>
 
