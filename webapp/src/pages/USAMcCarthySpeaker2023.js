@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import PercentageBarChart from "../components/PercentageBarChart";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
+import Sources from "../components/Sources";
+
 const Probabilities = ({ data }) => {
   const [tabChoice, setTabChoice] = useState();
   //   useEffect(() => {
@@ -66,15 +68,14 @@ const Speaker = () => {
         Will McCarthy become US House Speaker in 2023?
       </Typography>
       <Typography variant="body">
-        The following estimate is based on{" "}
-        <a href="https://thehill.com/homenews/house/3748648-whip-list-mccarthy-searches-for-218-gop-speakership-votes/">
-          this list by TheHill
-        </a>
-        . It uses a simple model of assigning people a probable vote of yes or
-        no. As noted in the article, it is assumed that all Democrats vote "no",
-        and all not listed Republicans vote "yes".
+        The following estimate is based on <a href="#H1">[H1]</a>. It uses a
+        simple model of assigning people a probable vote of yes or no. As noted
+        in the article, it is assumed that all Democrats vote "no", and all not
+        listed Republicans vote "yes".
       </Typography>
       <Probabilities data={data} />
+
+      <Sources list={data?.sources} />
     </Container>
   );
 };
