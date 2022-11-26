@@ -5,29 +5,28 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import TwitterOutages from "./TwitterOutages";
-import RepublicanPrimary from "./RepublicanPrimary";
-import USAMcCarthySpeaker from "./USAMcCarthySpeaker2023";
+
+import { useNavigate } from "react-router-dom";
 
 const Welcome = (props) => {
-  const { setPage } = props;
+  const navigate = useNavigate();
   return (
     <Box>
       Back of the Envelope is my spot on the web to share predictions based on
       models. It's mainly for myself to think things through.
       <List>
         <ListItem>
-          <ListItemButton onClick={() => setPage(<USAMcCarthySpeaker />)}>
+          <ListItemButton onClick={() => navigate("/2022/mccarthy-speaker")}>
             <ListItemText primary="Will McCarthy become Speaker in 2023?" />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton onClick={() => setPage(<RepublicanPrimary />)}>
+          <ListItemButton onClick={() => navigate("/2022/republican-primary")}>
             <ListItemText primary="Republican Primary" />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton onClick={() => setPage(<TwitterOutages />)}>
+          <ListItemButton onClick={() => navigate("/2022/twitter-outages")}>
             <ListItemText primary="Twitter Outages" />
           </ListItemButton>
         </ListItem>

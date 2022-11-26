@@ -36,7 +36,7 @@ const Probabilities = ({ data }) => {
           </TabList>
           {dependencies.map((d) => (
             <TabPanel value={d.name}>
-              <PercentageBarChart title={d.name} data={d.probabilities} />
+              <PercentageBarChart title={d.title} data={d.probabilities} />
             </TabPanel>
           ))}{" "}
         </Box>
@@ -63,8 +63,7 @@ const Speaker = () => {
   return (
     <Container>
       <Typography variant="h4">
-        Predicting the result of the Republican Primary for the 2024
-        presidential election
+        Will McCarthy become US House Speaker in 2023?
       </Typography>
       <Typography variant="body">
         The following estimate is based on{" "}

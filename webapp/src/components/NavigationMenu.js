@@ -12,17 +12,16 @@ import HomeIcon from "@mui/icons-material/Home";
 import Germany from "../pages/germany";
 import UnitedKingdom from "../pages/unitedkingdom";
 import Welcome from "../pages/welcome";
+
+import { useNavigate } from "react-router-dom";
+
 const NavigationMenu = (props) => {
-  const { setPage } = props;
+  const navigate = useNavigate();
   return (
     <Drawer variant="permanent" sx={{ backgroundColor: "lightgray" }}>
       <List sx={{ width: "300px" }}>
         <ListItem>
-          <ListItemButton
-            onClick={() => {
-              setPage(<Welcome setPage={setPage} />);
-            }}
-          >
+          <ListItemButton onClick={() => navigate("/")}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -30,20 +29,12 @@ const NavigationMenu = (props) => {
           </ListItemButton>
         </ListItem>{" "}
         <ListItem>
-          <ListItemButton
-            onClick={() => {
-              setPage(<Germany />);
-            }}
-          >
+          <ListItemButton onClick={() => navigate("/germany")}>
             <ListItemText primary={"Germany"} />
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton
-            onClick={() => {
-              setPage(<UnitedKingdom />);
-            }}
-          >
+          <ListItemButton onClick={() => navigate("/united-kingdom")}>
             <ListItemText primary={"United Kingdom"} />
           </ListItemButton>
         </ListItem>
