@@ -19,7 +19,7 @@ import RepublicanPrimary from "./pages/RepublicanPrimary";
 import USAMcCarthySpeaker from "./pages/USAMcCarthySpeaker2023";
 import UnitedKingdom from "./pages/unitedkingdom";
 import Germany from "./pages/germany";
-
+import CiaFactbook from "./pages/CiaFactbook";
 const Inside = () => {
   return (
     <Box sx={{ display: "flex" }}>
@@ -74,6 +74,10 @@ function App() {
         {
           path: "2022/republican-primary",
           element: <RepublicanPrimary />,
+        },
+        {
+          path: "2022/cia-factbook",
+          element: <CiaFactbook />,
         },
       ],
     },

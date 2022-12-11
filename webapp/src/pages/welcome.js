@@ -37,6 +37,10 @@ const Item = ({ data }) => {
 const Welcome = (props) => {
   const items = [
     {
+      url: "/2022/cia-factbook",
+      title: "Entity names from the CIA factbook",
+    },
+    {
       url: "/2022/mccarthy-speaker",
       title: "Will McCarthy become Speaker in 2023?",
     },
