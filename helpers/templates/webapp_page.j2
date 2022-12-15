@@ -1,0 +1,35 @@
+import {
+Container,
+Typography,
+} from "@mui/material";
+
+import React{%if datafile%}, { useState, useEffect } {% endif %} from "react"
+
+const {{ component_name }} = () => {
+{% if datafile %}
+const [data, setData] = useState();
+const [state, setState] = useState(0);
+
+useEffect(() => {
+if (state === 0) {
+fetch("/data/{{ datafile }}")
+.then((result) => result.json())
+.then((result) => {
+setData(result);
+setState(1);
+});
+}
+}, [state, setState, setData]);
+{% endif %}
+
+
+return (
+<Container>
+  <Typography variant="h4">
+    {{ component_name }}
+  </Typography>
+</Container>
+);
+}
+
+export default {{ component_name }};

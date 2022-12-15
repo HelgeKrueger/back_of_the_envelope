@@ -37,6 +37,10 @@ const Item = ({ data }) => {
 const Welcome = (props) => {
   const items = [
     {
+      url: "/2022/mastodon-tags",
+      title: "Mastodon Tags",
+    },
+    {
       url: "/2022/cia-factbook",
       title: "Entity names from the CIA factbook",
     },
