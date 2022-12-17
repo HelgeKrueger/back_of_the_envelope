@@ -1,6 +1,10 @@
 import {
   Container,
+  FormControl,
+  InputLabel,
   Link,
+  MenuItem,
+  Select,
   Table,
   TableCell,
   TableContainer,
@@ -22,13 +26,7 @@ const FrequencyRow = ({ row }) => {
   );
 };
 
-const FrequencyTable = ({ data }) => {
-  if (data.length === 0) {
-    return <></>;
-  }
-
-  const rowData = data[0]["data"];
-  console.log(rowData);
+const FrequencyTable = ({ rowData }) => {
   return (
     <TableContainer>
       <Table size="small">
@@ -46,6 +44,37 @@ const FrequencyTable = ({ data }) => {
   );
 };
 
+const FrequencyTableContainer = ({ data }) => {
+  const [selectedId, setSelectedId] = useState(0);
+
+  if (data.length === 0) {
+    return <></>;
+  }
+
+  return (
+    <Container>
+      <FormControl>
+        <InputLabel id="frequency-table-id-selector-label">
+          Select Date
+        </InputLabel>
+        <Select
+          labelId="frequency-table-id-selector-label"
+          value={selectedId}
+          label="Select Date"
+          onChange={(e) => {
+            setSelectedId(e.target.value);
+          }}
+        >
+          {data.map((row, idx) => {
+            return <MenuItem value={idx}>{row["date"]}</MenuItem>;
+          })}
+        </Select>
+      </FormControl>
+      <FrequencyTable rowData={data[selectedId].data} />
+    </Container>
+  );
+};
+
 const MastodonTags = () => {
   const [data, setData] = useState([]);
   const [state, setState] = useState(0);
@@ -55,6 +84,7 @@ const MastodonTags = () => {
       fetch("/data/mastodon-trending-tags.json")
         .then((result) => result.json())
         .then((result) => {
+          result.reverse();
           setData(result);
           setState(1);
         });
@@ -70,7 +100,7 @@ const MastodonTags = () => {
         instances ...
       </Typography>
 
-      <FrequencyTable data={data} />
+      <FrequencyTableContainer data={data} />
     </Container>
   );
 };
