@@ -11,6 +11,9 @@ seaborn = "*"
 lxml = "*"
 requests = "*"
 beautifulsoup4 = "*"
+html5lib = "*"
+pytest = "*"
+jinja2 = "*"
 
 [dev-packages]
 
