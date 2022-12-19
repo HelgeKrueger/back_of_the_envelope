@@ -6,6 +6,7 @@ import {
   MenuItem,
   Select,
   Table,
+  TableBody,
   TableCell,
   TableContainer,
   TableHead,
@@ -14,6 +15,74 @@ import {
 } from "@mui/material";
 
 import React, { useState, useEffect } from "react";
+import D3Wrapper from "../D3Wrapper";
+
+import * as cloud from "d3-cloud";
+
+const WordCloud = ({ data }) => {
+  const renderer = (svg, data, width, height, d3) => {
+    svg.selectAll("*").remove();
+    const myData = data.slice(0, 30);
+
+    const minUses = d3.min(myData.map((x) => x.uses));
+    const maxUses = d3.max(myData.map((x) => x.uses));
+
+    const usesScale = d3
+      .scaleLinear()
+      .domain([minUses, maxUses])
+      .range([20, 50]);
+
+    const words = myData.map((x) => {
+      return {
+        text: x.tag,
+        size: "" + usesScale(x.uses),
+      };
+    });
+
+    console.log(words, myData);
+    console.log(minUses, maxUses);
+
+    var layout = cloud()
+      .size([width, height])
+      .words(words)
+      .padding(5)
+      .rotate(function () {
+        return ~~(Math.random() * 2) * 90;
+      })
+      .font("Impact")
+      .fontSize(function (d) {
+        return d.size;
+      })
+      .on("end", draw);
+
+    layout.start();
+
+    function draw(words) {
+      svg
+        .append("g")
+        .attr(
+          "transform",
+          "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")"
+        )
+        .selectAll("text")
+        .data(words)
+        .enter()
+        .append("text")
+        .style("font-size", function (d) {
+          return d.size + "px";
+        })
+        .style("font-family", "Impact")
+        .attr("text-anchor", "middle")
+        .attr("transform", function (d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function (d) {
+          return d.text;
+        });
+    }
+  };
+  return <D3Wrapper width={800} height={600} renderer={renderer} data={data} />;
+};
 
 const FrequencyRow = ({ row }) => {
   return (
@@ -36,9 +105,11 @@ const FrequencyTable = ({ rowData }) => {
             <TableCell>Uses</TableCell>
           </TableRow>
         </TableHead>
-        {rowData.map((row) => {
-          return <FrequencyRow row={row} key={row.tag} />;
-        })}
+        <TableBody>
+          {rowData.map((row) => {
+            return <FrequencyRow row={row} key={row.tag} />;
+          })}
+        </TableBody>
       </Table>
     </TableContainer>
   );
@@ -46,6 +117,7 @@ const FrequencyTable = ({ rowData }) => {
 
 const FrequencyTableContainer = ({ data }) => {
   const [selectedId, setSelectedId] = useState(0);
+  const [type, setType] = useState("cloud");
 
   if (data.length === 0) {
     return <></>;
@@ -53,7 +125,7 @@ const FrequencyTableContainer = ({ data }) => {
 
   return (
     <Container>
-      <FormControl>
+      <FormControl sx={{ margin: 2 }}>
         <InputLabel id="frequency-table-id-selector-label">
           Select Date
         </InputLabel>
@@ -66,11 +138,35 @@ const FrequencyTableContainer = ({ data }) => {
           }}
         >
           {data.map((row, idx) => {
-            return <MenuItem value={idx}>{row["date"]}</MenuItem>;
+            return (
+              <MenuItem value={idx} key={row["date"]}>
+                {row["date"]}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>
-      <FrequencyTable rowData={data[selectedId].data} />
+      <FormControl sx={{ margin: 2 }}>
+        <InputLabel id="frequency-table-display-type-label">
+          Select Display Type
+        </InputLabel>
+        <Select
+          labelId="frequency-table-display-type-label"
+          value={type}
+          label="Select Display ype"
+          onChange={(e) => {
+            setType(e.target.value);
+          }}
+        >
+          <MenuItem value="cloud">Word Cloud</MenuItem>
+          <MenuItem value="table">Table</MenuItem>
+        </Select>
+      </FormControl>
+      {type === "cloud" ? (
+        <WordCloud data={data[selectedId].data} />
+      ) : (
+        <FrequencyTable rowData={data[selectedId].data} />
+      )}
     </Container>
   );
 };
