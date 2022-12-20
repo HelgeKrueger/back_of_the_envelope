@@ -5,6 +5,8 @@ Typography,
 
 import React{%if datafile%}, { useState, useEffect } {% endif %} from "react"
 
+import Sources from "../components/Sources";
+
 const {{ component_name }} = () => {
 {% if datafile %}
 const [data, setData] = useState();
@@ -28,6 +30,8 @@ return (
   <Typography variant="h4">
     {{ component_name }}
   </Typography>
+
+  <Sources list={data?.sources} />
 </Container>
 );
 }

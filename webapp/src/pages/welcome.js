@@ -40,6 +40,11 @@ const Item = ({ data }) => {
 const Welcome = (props) => {
   const items = [
     {
+      url: "/2023/elections",
+      title: "Elections in 2023",
+      description: "Data from the CIA factbook",
+    },
+    {
       url: "/2022/mastodon-tags",
       title: "Mastodon Tags",
     },

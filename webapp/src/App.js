@@ -21,6 +21,7 @@ import UnitedKingdom from "./pages/unitedkingdom";
 import Germany from "./pages/germany";
 import CiaFactbook from "./pages/CiaFactbook";
 import MastodonTags from "./pages/MastodonTags";
+import Elections2023 from "./pages/Elections2023";
 const Inside = () => {
   return (
     <Box sx={{ display: "flex" }}>
@@ -83,6 +84,10 @@ function App() {
         {
           path: "2022/mastodon-tags",
           element: <MastodonTags />,
+        },
+        {
+          path: "2023/elections",
+          element: <Elections2023 />,
         },
       ],
     },
