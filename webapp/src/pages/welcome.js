@@ -11,6 +11,7 @@ import {
   Typography,
   CardActions,
   Paper,
+  Grid,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -20,17 +21,19 @@ const Item = ({ data }) => {
 
   const { title, url, description } = data;
   return (
-    <Card sx={{ width: "300px", margin: "20px" }}>
-      <CardContent>
-        <Typography variant="h5" sx={{ marginBottom: 3 }}>
-          {title}
-        </Typography>
-        <Typography variant="body">{description}</Typography>
-      </CardContent>
-      <CardActions>
-        <Button onClick={() => navigate(url)}>Read</Button>
-      </CardActions>
-    </Card>
+    <Grid item xs={5}>
+      <Card sx={{ width: "300px", margin: "20px" }}>
+        <CardContent>
+          <Typography variant="h5" sx={{ marginBottom: 3 }}>
+            {title}
+          </Typography>
+          <Typography variant="body">{description}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={() => navigate(url)}>Read</Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 };
 
@@ -77,11 +80,11 @@ const Welcome = (props) => {
         <br />
         The list below should contain some recent computations.
       </Paper>
-      <Container sx={{ display: "flex", backgroundColor: "lightskyblue" }}>
+      <Grid container sx={{ backgroundColor: "lightskyblue" }}>
         {items.map((item) => (
           <Item data={item} key={item.url} />
         ))}
-      </Container>
+      </Grid>
     </Box>
   );
 };
