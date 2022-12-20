@@ -22,7 +22,8 @@ import * as cloud from "d3-cloud";
 const WordCloud = ({ data }) => {
   const renderer = (svg, data, width, height, d3) => {
     svg.selectAll("*").remove();
-    const myData = data.slice(0, 30);
+    // const myData = data.slice(0, 30);
+    const myData = data;
 
     const minUses = d3.min(myData.map((x) => x.uses));
     const maxUses = d3.max(myData.map((x) => x.uses));
@@ -31,6 +32,8 @@ const WordCloud = ({ data }) => {
       .scaleLinear()
       .domain([minUses, maxUses])
       .range([20, 50]);
+
+    const colors = d3.schemeTableau10;
 
     const words = myData.map((x) => {
       return {
@@ -73,11 +76,15 @@ const WordCloud = ({ data }) => {
         })
         .style("font-family", "Impact")
         .attr("text-anchor", "middle")
+        .style("fill", () => colors[Math.floor(Math.random() * 10)])
         .attr("transform", function (d) {
           return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
         })
         .text(function (d) {
           return d.text;
+        })
+        .on("click", (d, x) => {
+          console.log(d, x);
         });
     }
   };
