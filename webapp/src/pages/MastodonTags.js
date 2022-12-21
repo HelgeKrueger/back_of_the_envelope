@@ -75,6 +75,7 @@ const WordCloud = ({ data }) => {
           return d.size + "px";
         })
         .style("font-family", "Impact")
+        .style("cursor", "pointer")
         .attr("text-anchor", "middle")
         .style("fill", () => colors[Math.floor(Math.random() * 10)])
         .attr("transform", function (d) {
@@ -84,7 +85,7 @@ const WordCloud = ({ data }) => {
           return d.text;
         })
         .on("click", (d, x) => {
-          console.log(d, x);
+          window.open(`https://mas.to/tags/${x.text}`, "_blank");
         });
     }
   };
