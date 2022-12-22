@@ -1,47 +1,9 @@
-import {
-  Container,
-  Link,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Container, Link, Typography } from "@mui/material";
 
 import React, { useState, useEffect } from "react";
+import SimpleTable from "../components/SimpleTable";
 
 import Sources from "../components/Sources";
-
-const ElectionTable = ({ rows }) => {
-  if (!rows) {
-    return <></>;
-  }
-
-  return (
-    <TableContainer>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Election Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => {
-            return (
-              <TableRow key={row.name}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.election_date}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-};
 
 const Elections2023 = () => {
   const [data, setData] = useState();
@@ -70,8 +32,13 @@ const Elections2023 = () => {
         .
       </Typography>
 
-      <ElectionTable rows={data?.elections} />
-
+      <SimpleTable
+        rows={data?.elections}
+        columns={[
+          { name: "name", title: "Name" },
+          { name: "election_date", title: "Election Date" },
+        ]}
+      />
       <Sources list={data?.sources} />
     </Container>
   );
