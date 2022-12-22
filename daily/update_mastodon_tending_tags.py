@@ -11,28 +11,18 @@ def url_for_server(server):
 
 def trends(server):
     response = requests.get(url_for_server(server))
-    return response.json()
+    if response.ok:
+        return response.json()
+
+    return
 
 
-servers = [
-    "mastodon.online",
-    "mas.to",
-    "mstdn.social",
-    "mastodon.social",
-    "urbanists.social",
-    "mastodon.green",
-    "fosstodon.org",
-    "mastodon.lol",
-    "climatejustice.social",
-    "ravenation.club",
-    "gensokyo.social",
-    "mastodon.art",
-    "hostux.social",
-    "meow.social",
-    "tech.lgbt",
-    # 'forall.social',
-    "cyberplace.social",
-]
+instances_filename = "webapp/public/data/mastodon-instances.json"
+with open(instances_filename) as f:
+    server_data = json.load(f)
+
+instances = server_data["data"][0]["instances"]
+servers = [x["name"] for x in instances]
 
 data = {}
 
@@ -45,13 +35,15 @@ for s in servers:
 tag_to_server = {}
 
 for server_name, tags in data.items():
-    for t in tags:
-        tag = t["name"].lower()
-        uses = t["history"][0]["uses"]
-        if tag not in tag_to_server:
-            tag_to_server[tag] = []
+    if tags:
+        for t in tags:
+            if type(t) == dict:
+                tag = t["name"].lower()
+                uses = t["history"][0]["uses"]
+                if tag not in tag_to_server:
+                    tag_to_server[tag] = []
 
-        tag_to_server[tag].append({"server": server_name, "uses": uses})
+                tag_to_server[tag].append({"server": server_name, "uses": uses})
 
 total_uses = {
     tag: sum([int(x["uses"]) for x in val]) for tag, val in tag_to_server.items()

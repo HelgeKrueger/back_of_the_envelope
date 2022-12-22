@@ -13,7 +13,7 @@ const MastodonInstances = () => {
 
   useEffect(() => {
     if (state === 0) {
-      fetch("/data/mastondon-instances.json")
+      fetch("/data/mastodon-instances.json")
         .then((result) => result.json())
         .then((result) => {
           setData(result);

@@ -22,6 +22,7 @@ import * as cloud from "d3-cloud";
 const WordCloud = ({ data }) => {
   const renderer = (svg, data, width, height, d3) => {
     svg.selectAll("*").remove();
+    svg.style("background-color", "white");
     // const myData = data.slice(0, 30);
     const myData = data;
 
@@ -41,10 +42,6 @@ const WordCloud = ({ data }) => {
         size: "" + usesScale(x.uses),
       };
     });
-
-    console.log(words, myData);
-    console.log(minUses, maxUses);
-
     var layout = cloud()
       .size([width, height])
       .words(words)
